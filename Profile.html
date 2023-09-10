@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+
+    <title>Profile</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+     background: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
+     margin: 0;
+
+    }
+    .container-profile {
+      max-width: 50%;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .profile-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .profile-details {
+      background-color: #f0f0f0;
+      margin-bottom: 10px;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .profile-details h2 {
+      margin-top: 0;
+    }
+    .profile-details p {
+      margin: 0;
+    }
+    .edit-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .edit-button a {
+      text-decoration: none;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 3px;
+    }
+    strong {
+        font-size: 1.5rem;
+        
+    }
+  </style>
+
+  <body>
+    <nav style="background-color: #f1f1f1;">
+      <div class="container nav">
+        <div class="logo">
+          <a href="./index.html"><h3>GadgetBazaar</h3></a>
+        </div>
+        <ul class="nav_menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a style=" border:1px solid #000;padding: 10px; background:#F3FDE8; border-radius: 5px ; font-weight:bold;"href="#" id="username"></a></li>
+          
+        </ul>
+      </div>
+    </nav>
+    <div class="container-profile">
+      <div class="profile-header">
+        <h1>Welcome to Your Profile</h1>
+      </div>
+      <div class="profile-details">
+        <h2>User Information</h2>
+        <p><strong>Name:</strong> <span id="fullName"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Username:</strong> <span id="username"></span></p>
+        <p><strong>Phone:</strong> <span id="phoneNumber"></span></p>
+        <p><strong>Address:</strong> <span id="address"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+        <p><strong>Gender:</strong> <span id="gender"></span></p>
+      </div>
+      <div class="edit-button">
+        <a href="./Registration.html">Edit Profile</a>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve user data from Local Storage
+        const userData = JSON.parse(localStorage.getItem("userData"));
+
+        if (userData) {
+          // Populate the user details in the profile page
+          document.getElementById("fullName").textContent = userData.fullName;
+          document.getElementById("email").textContent = userData.email;
+          document.getElementById("username").textContent = userData.username;
+          document.getElementById("phoneNumber").textContent =
+            userData.phoneNumber;
+          document.getElementById("address").textContent = userData.address; // Add address field to the registration form
+          document.getElementById("dob").textContent = userData.dob; // Add date of birth field to the registration form
+          const genderElement = document.getElementById("gender");
+          if (userData.gender === "male") {
+            genderElement.textContent = "Male";
+          } else if (userData.gender === "female") {
+            genderElement.textContent = "Female";
+          } else {
+            genderElement.textContent = "Prefer not to say";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
